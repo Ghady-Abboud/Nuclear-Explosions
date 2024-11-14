@@ -1,0 +1,25 @@
+[
+   {
+    "designation": "Mk-I",
+    "type" : "Bomb",
+    "width" : "28",
+    "length" : "120",
+    "weight" : "8900",
+    "yield": [15,16],
+    "fuzing" : "Airburst",
+    "laboratory" : "Los Alamos / Project Y",
+    "status": "Retired"
+   },
+
+   {
+    "designation": "Mk-III",
+    "type" : "Bomb",
+    "width" : "60.25",
+    "length" : "128",
+    "weight" : "10300",
+    "yield": [18,20,21,22,23,37,49],
+    "fuzing" : "Airburst",
+    "laboratory" : "Los Alamos / Project Y",
+    "status": "Retired"
+   }
+]
