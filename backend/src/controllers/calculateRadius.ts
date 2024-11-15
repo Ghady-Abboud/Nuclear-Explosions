@@ -1,4 +1,4 @@
-import { Router, Request, Response} from "express";
+import { Router, Request, Response } from "express";
 
 /*const router = Router();
 
@@ -10,26 +10,35 @@ export default router
 */
 
 class calculateRadius {
-    private router : Router;
-    private data : Array<any>;
+  private router: Router;
+  private data: object;
 
-    public constructor(data : Array<any>) {
-        this.router = Router();
-        this.initializeRoutes();
-        this.data = data;
-    }
+  public constructor(data: object) {
+    this.router = Router();
+    this.initializeRoutes();
+    this.data = data;
+  }
 
-    private initializeRoutes() {
-        this.router.get('/', this.RadiusCalculation);
-    }
+  private initializeRoutes() {
+    this.router.get("/", this.RadiusCalculation);
+  }
 
-    public RadiusCalculation(req: Request, res: Response): void{
-        res.send("Class Testing Successful!");
+  public RadiusCalculation = (req: Request, res: Response): void => {
+    try {
+      const listOfDesignations: Array<string> = [];
+      for (let i = 0; i < Object.keys(this.data).length; i++) {
+        const bomb = this.data[i];
+        listOfDesignations.push(bomb["designation"]);
+      }
+      res.send(listOfDesignations);
+    } catch (err) {
+      console.error(err);
     }
+  };
 
-    public getRouter(): Router {
-        return this.router;
-    }
+  public getRouter(): Router {
+    return this.router;
+  }
 }
 
-export default calculateRadius
+export default calculateRadius;
