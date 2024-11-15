@@ -1,5 +1,5 @@
 import { Router } from "express";
-import calculateRadius from "../src/controllers/calculateRadius";
+import calculateRadius from "../src/controllers/blastRadius";
 import data from "../../data/data.json";
 
 const router = Router();
