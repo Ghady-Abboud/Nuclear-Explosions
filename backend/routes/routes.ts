@@ -1,10 +1,11 @@
 import { Router } from "express";
-import paperRoutes from '../src/controllers/paper.routes';
-import searchRoutes from '../src/controllers/search.routes';
+import calculateRadius from "../src/controllers/calculateRadius";
+import data from "../../data/data.json";
 
 const router = Router();
+const calculate_radius = new calculateRadius(data);
 
-//router.use('/papers', paperRoutes);
-//router.use('/search', searchRoutes);
+
+router.use('/calculate-radius', calculate_radius.RadiusCalculation);
 
 export default router;
