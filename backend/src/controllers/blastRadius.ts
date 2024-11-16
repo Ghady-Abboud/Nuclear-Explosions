@@ -26,7 +26,9 @@ class calculateRadius {
         const k = [180, 120, 70, 50];
         for (var kvalue of k) {
           for (var yieldvalue of bomb["yield"]) {
-            const equationResult = Math.round(kvalue * Math.pow(yieldvalue, 1 / 3));
+            const equationResult = Math.round(
+              kvalue * Math.pow(yieldvalue, 1 / 3)
+            );
 
             allresults.push(equationResult);
           }
