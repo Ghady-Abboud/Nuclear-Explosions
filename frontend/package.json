@@ -15,7 +15,9 @@
     "@mui/material": "^6.1.7",
     "maplibre-gl": "^4.7.1",
     "next": "15.0.3",
+    "normalize.css": "^8.0.1",
     "react": "19.0.0-rc-66855b96-20241106",
+    "react-devtools": "^6.0.1",
     "react-dom": "19.0.0-rc-66855b96-20241106"
   },
   "devDependencies": {
