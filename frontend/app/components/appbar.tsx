@@ -6,10 +6,9 @@ export default function AppBar() {
     <div
       className="Appbar-wrapper"
       style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100vw",
-        backgroundColor: "black",
+        width: "95%",
+        margin: "0 auto",
+        //border: "3px solid red",
       }}
     >
       <div
