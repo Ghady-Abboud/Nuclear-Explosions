@@ -11,11 +11,13 @@ export default function Map() {
   const zoom = 6;
   const API_KEY = process.env.NEXT_PUBLIC_MATPILER_API_KEY;
 
+  const [selectedLngLat, setSelectedLngLat] = useState<number[]>([lng, lat]);
+
   useEffect(() => {
-    if (mapInitialized) return; // only run this effect if the map hasn't been initialized yet
+    if (mapInitialized) return;
 
     const map = new maplibregl.Map({
-      container: mapContainer.current!, // non-null assertion since we are sure it will exist
+      container: mapContainer.current!,
       style: `https://api.maptiler.com/maps/streets-v2/style.json?key=${API_KEY}`,
       center: [lng, lat],
       zoom: zoom,
@@ -30,16 +32,12 @@ export default function Map() {
 
     function onDragEnd() {
       const lnglat = marker.getLngLat();
-      const coordinates = document.getElementById("coordinates");
-      if (coordinates) {
-        coordinates.style.display = "block";
-        coordinates.textContent = `Longitude: ${lnglat.lng}\r\nLatitude: ${lnglat.lat}`;
-      }
+      setSelectedLngLat([lnglat.lng, lnglat.lat]);
     }
 
     marker.on("dragend", onDragEnd);
 
-    setMapInitialized(true); // mark the map as initialized
+    setMapInitialized(true);
   }, [API_KEY, lng, lat, zoom, mapInitialized]);
 
   return (
@@ -63,7 +61,7 @@ export default function Map() {
           width: "100%",
         }}
       />
-      <pre
+      <div
         id="coordinates"
         className="coordinates"
         style={{
@@ -79,9 +77,9 @@ export default function Map() {
           borderRadius: "3px",
         }}
       >
-        Longitude: 33.8547 <br />
-        Latitude: 35.8623
-      </pre>
+        Longitude: {selectedLngLat[0]} <br />
+        Latitude: {selectedLngLat[1]}
+      </div>
     </div>
   );
 }
