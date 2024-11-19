@@ -1,40 +1,27 @@
-import React, { useState } from "react";
-
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from "react";
 export default function Sidebar() {
-  const [isHovered, setIsHovered] = useState(false);
-  const [SearchValue, setSearchValue] = useState<string>("");
-  const [bombNames, setBombNames] = useState<string[]>([
-    "tnt",
-    "c4",
-    "he",
-    "molotov",
-  ]);
-  const [filteredBombNames, setFilteredBombNames] = useState<string[]>([]);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const bomblist: string[] = ["tnt", "c4", "he", "molotov"];
+  const [modifiedBombList, setModifiedBombList] = useState<string[]>(bomblist);
+  const [dropdownState, setDropdownState] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<string>("");
 
-  const handleSearchChange = (event: any) => {
-    const value: string = event.target.value;
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setSearchValue(value);
-
-    if (value) {
-      const filteredBombs: string[] = bombNames.filter((name: string) => {
-        name.toLowerCase().includes(value.toLowerCase());
-      });
-      setFilteredBombNames(filteredBombs);
+    if (value.trim() !== "") {
+      setModifiedBombList(
+        bomblist.filter((item) =>
+          item.toLowerCase().includes(searchValue.toLowerCase())
+        )
+      );
     } else {
-      setFilteredBombNames([]);
+      setModifiedBombList(bomblist);
     }
   };
 
-  const handleDropdownToggle = () => {
-    setFilteredBombNames(bombNames);
-    setShowDropdown(true);
-  };
-
-  const handleDropdownSelect = (bombName: string) => {
-    setSearchValue(bombName);
-    setShowDropdown(false);
-  };
   return (
     <div
       className="side-bar-wrapper"
@@ -85,50 +72,79 @@ export default function Sidebar() {
         </h3>
       </button>
 
-      <div className="side-bar-main" style={{ width: "100%", flexGrow: 1 }}>
-        <input
-          type="text"
-          placeholder="Select Bomb"
-          value={SearchValue}
-          onChange={handleSearchChange}
-          onClick={handleDropdownToggle}
-        />
-        {showDropdown && (
-          <ul
+      <div
+        className="side-bar-main"
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+        }}
+      >
+        <button
+          style={{
+            width: "50%",
+            height: "40px",
+            borderRadius: "10px",
+            cursor: "pointer",
+            marginRight: "10px",
+          }}
+          onClick={() => setDropdownState(!dropdownState)}
+        >
+          Select Bomb
+          <FontAwesomeIcon icon={faCaretDown} style={{ marginLeft: "10px" }} />
+        </button>
+
+        {dropdownState && (
+          <div
+            className="side-bar-dropdown"
             style={{
-              listStyleType: "none",
-              margin: "0",
-              padding: "0",
-              backgroundColor: "white",
-              border: "1px solid gray",
-              maxHeight: "150px",
-              overflowY: "auto",
-              position: "absolute",
-              zIndex: 10,
               width: "100%",
+              height: "30%",
+              position: "relative",
+              overflowY: "auto",
             }}
           >
-            {filteredBombNames.map((bomb, index) => (
-              <li
-                key={index}
-                onClick={() => handleDropdownSelect(bomb)}
-                style={{
-                  padding: "10px",
-                  cursor: "pointer",
-                  backgroundColor: "lightgray",
-                  borderBottom: "1px solid gray",
-                }}
-                onMouseEnter={(event) =>
-                  (event.currentTarget.style.backgroundColor = "darkgray")
-                }
-                onMouseLeave={(event) =>
-                  (event.currentTarget.style.backgroundColor = "lightgray")
-                }
-              >
-                {bomb}
-              </li>
-            ))}
-          </ul>
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchValue}
+              onChange={handleSearchChange}
+              style={{
+                width: "50%",
+                height: "30px",
+                textAlign: "center",
+                borderRadius: "10px",
+              }}
+            />
+            <ul
+              style={{
+                position: "absolute",
+                top: "40px",
+                width: "50%",
+                backgroundColor: "gray",
+                borderRadius: "10px",
+                textAlign: "center",
+                listStyleType: "none",
+              }}
+            >
+              {modifiedBombList.map((item, index) => (
+                <li
+                  key={index}
+                  style={{
+                    height: "35px",
+                    cursor: "pointer",
+                    borderBottom:
+                      index !== modifiedBombList.length - 1
+                        ? "1px solid white"
+                        : "none",
+                  }}
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
     </div>
