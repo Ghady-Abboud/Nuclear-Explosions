@@ -1,6 +1,6 @@
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 export default function Sidebar() {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const bomblist: string[] = ["tnt", "c4", "he", "molotov"];
@@ -23,6 +23,7 @@ export default function Sidebar() {
   };
 
   return (
+    //Header
     <div
       className="side-bar-wrapper"
       style={{
@@ -39,12 +40,13 @@ export default function Sidebar() {
       <hr
         style={{
           border: "none",
-          borderTop: "1px solid gray",
+          borderTop: "3px solid gray",
           margin: "10px 0",
         }}
       />
 
       <button
+        //Detonate
         style={{
           width: "40%",
           height: "50px",
@@ -79,73 +81,94 @@ export default function Sidebar() {
           width: "100%",
           height: "100%",
           display: "flex",
+          flexDirection: "column",
         }}
       >
-        <button
+        <div
+          //Select Bomb
+          className="select-bomb"
           style={{
-            width: "50%",
-            height: "40px",
-            borderRadius: "10px",
-            cursor: "pointer",
-            marginRight: "10px",
+            position: "relative",
+            width: "100%",
+            height: dropdownState ? "25%" : "fit-content",
+            display: "flex",
+            flexDirection: "row",
+            marginBottom: "10px",
           }}
-          onClick={() => setDropdownState(!dropdownState)}
         >
-          Select Bomb
-          <FontAwesomeIcon icon={faCaretDown} style={{ marginLeft: "10px" }} />
-        </button>
-
-        {dropdownState && (
-          <div
-            className="side-bar-dropdown"
+          <button
             style={{
-              width: "100%",
-              height: "30%",
-              position: "relative",
-              overflowY: "auto",
+              width: "50%",
+              height: "40px",
+              borderRadius: "10px",
+              cursor: "pointer",
+              marginRight: "10px",
             }}
+            onClick={() => setDropdownState(!dropdownState)}
           >
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchValue}
-              onChange={handleSearchChange}
-              style={{
-                width: "50%",
-                height: "30px",
-                textAlign: "center",
-                borderRadius: "10px",
-              }}
+            Select Bomb
+            <FontAwesomeIcon
+              icon={dropdownState ? faCaretRight : faCaretDown}
+              style={{ marginLeft: "10px" }}
             />
-            <ul
+          </button>
+
+          {dropdownState && (
+            <div
+              className="side-bar-dropdown"
               style={{
-                position: "absolute",
-                top: "40px",
-                width: "50%",
-                backgroundColor: "gray",
-                borderRadius: "10px",
-                textAlign: "center",
-                listStyleType: "none",
+                width: "100%",
+                height: "100%",
+                position: "relative",
+                overflowY: "auto",
               }}
             >
-              {modifiedBombList.map((item, index) => (
-                <li
-                  key={index}
-                  style={{
-                    height: "35px",
-                    cursor: "pointer",
-                    borderBottom:
-                      index !== modifiedBombList.length - 1
-                        ? "1px solid white"
-                        : "none",
-                  }}
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchValue}
+                onChange={handleSearchChange}
+                style={{
+                  width: "50%",
+                  height: "30px",
+                  textAlign: "center",
+                  borderRadius: "10px",
+                }}
+              />
+              <ul
+                style={{
+                  position: "absolute",
+                  top: "40px",
+                  width: "100%",
+                  backgroundColor: "gray",
+                  borderRadius: "10px",
+                  textAlign: "center",
+                  listStyleType: "none",
+                }}
+              >
+                {modifiedBombList.map((item, index) => (
+                  <li
+                    key={index}
+                    style={{
+                      height: "35px",
+                      cursor: "pointer",
+                      borderBottom:
+                        index !== modifiedBombList.length - 1
+                          ? "1px solid white"
+                          : "none",
+                    }}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        <hr style={{ border: "none", borderTop: "3px solid gray" }} />
+        <div className="select-city">
+          
+        </div>
       </div>
     </div>
   );
