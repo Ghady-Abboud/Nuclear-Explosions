@@ -166,8 +166,99 @@ export default function Sidebar() {
           )}
         </div>
         <hr style={{ border: "none", borderTop: "3px solid gray" }} />
-        <div className="select-city">
-          
+        <div
+          //Basic Options
+          className="basic-options"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            position: "relative",
+            width: "100%",
+            flexGrow: 1,
+          }}
+        >
+          <h1 style={{ margin: "5px", fontSize: "16px" }}>Basic Options:</h1>
+          <div
+            className="explosion-type-list"
+            style={{ display: "flex", marginLeft: "30px" }}
+          >
+            <label
+              style={{ margin: "5px", fontStyle: "italic", fontSize: "14px" }}
+            >
+              Height of burst:{" "}
+            </label>
+            <div
+              className="explosion-type-select"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-evenly",
+                marginLeft: "10px",
+              }}
+            >
+              <div
+                className="airburst"
+                style={{ display: "flex", flexDirection: "row" }}
+              >
+                <input type="radio" name="explosion-type" />
+                <label style={{ fontSize: "14px", marginLeft: "5px" }}>
+                  Airburst
+                </label>
+              </div>
+              <div
+                className="surface"
+                style={{ display: "flex", flexDirection: "row" }}
+              >
+                <input type="radio" name="explosion-type" />
+                <label style={{ fontSize: "14px", marginLeft: "5px" }}>
+                  Surface
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            className="other-effects"
+            style={{
+              display: "flex",
+              width: "100%",
+              alignItems: "center",
+              marginTop: "10px",
+            }}
+          >
+            <h6
+              style={{
+                marginLeft: "30px",
+                fontSize: "14px",
+                fontStyle: "italic",
+                fontFamily: "sans-serif",
+                color: "darkgray",
+              }}
+            >
+              Other Effects:
+            </h6>
+            <div
+              className="other-effects-list"
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <input
+                type="checkbox"
+                name="other-effects"
+                style={{ marginLeft: "10px" }}
+              />
+              <label style={{ fontSize: "14px", marginLeft: "5px" }}>
+                Casualties
+              </label>
+
+              <input
+                type="checkbox"
+                name="other-effects"
+                style={{ marginLeft: "10px" }}
+              />
+              <label style={{ fontSize: "14px", marginLeft: "5px" }}>
+                Radioactive fallout
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
