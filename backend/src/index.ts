@@ -11,7 +11,7 @@ app.use(cors(
     {
     origin : config.corsOrigins,
     methods : ['GET', 'POST'],
-    credentials : true
+    allowedHeaders: ['Content-Type'],
     }
 ))
 

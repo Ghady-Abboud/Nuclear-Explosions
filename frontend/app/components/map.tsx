@@ -24,6 +24,8 @@ export default function Map() {
       attributionControl: false,
     });
 
+    
+
     map.addControl(new maplibregl.NavigationControl(), "top-right");
 
     const marker = new maplibregl.Marker({ draggable: true })

@@ -1,9 +1,10 @@
 import { faCaretDown, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
+import GetData from "../controllers/fetch";
 export default function Sidebar() {
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const bomblist: string[] = ["tnt", "c4", "he", "molotov"];
+  const bomblist: string[] = ["Mk-I", "Mk-III", "he", "molotov"];
   const [modifiedBombList, setModifiedBombList] = useState<string[]>(bomblist);
   const [dropdownState, setDropdownState] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
@@ -20,6 +21,11 @@ export default function Sidebar() {
     } else {
       setModifiedBombList(bomblist);
     }
+  };
+
+  const handleSelectBomb = (bomb: string) => {
+    setSearchValue(bomb);
+    setDropdownState(false);
   };
 
   return (
@@ -60,6 +66,7 @@ export default function Sidebar() {
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={() => GetData(searchValue)}
       >
         <h3
           style={{
@@ -106,7 +113,7 @@ export default function Sidebar() {
             }}
             onClick={() => setDropdownState(!dropdownState)}
           >
-            Select Bomb
+            {searchValue ? searchValue : "Select Bomb"}
             <FontAwesomeIcon
               icon={dropdownState ? faCaretRight : faCaretDown}
               style={{ marginLeft: "10px" }}
@@ -148,8 +155,10 @@ export default function Sidebar() {
               >
                 {modifiedBombList.map((item, index) => (
                   <li
+                    onClick={() => handleSelectBomb(item)}
                     key={index}
                     style={{
+                      alignContent: "center",
                       height: "35px",
                       cursor: "pointer",
                       borderBottom:
