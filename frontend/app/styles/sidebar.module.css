@@ -1,0 +1,188 @@
+/* HEADER SECTION*/
+
+.sideBarWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  overflow: auto;
+  flex-grow: 1;
+  background-color: yellow;
+  padding: 10px;
+}
+
+.sideBarHr {
+  border: none;
+  border-top: 3px solid gray;
+  margin: 10px 0;
+}
+
+/* Detonate SECTION*/
+
+.detonateButton {
+  width: 40%;
+  height: 50px;
+  margin: 0px auto;
+  margin-bottom: 20px;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: red;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.detonateButton:hover {
+  transform: scale(1.05);
+  animation: 0.5s ease;
+}
+
+/* MAIN SIDEBAR SECTION*/
+
+.sideBarMain {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.selectBomb {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.bombDropDownOpen {
+  height: 25%;
+}
+.bombDropDownClosed {
+  height: fit-content;
+}
+
+.selectBombButton {
+  width: 50%;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.sideBarDropDown {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
+}
+
+.bombNameInput {
+  width: 50%;
+  height: 30px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.bombNameList {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  background-color: gray;
+  border-radius: 10px;
+  text-align: center;
+  list-style-type: none;
+}
+
+.bombNameList li {
+  align-content: center;
+  height: 35px;
+  cursor: pointer;
+}
+
+.bombNameList li:not(:last-child) {
+  border-bottom: 1px solid white;
+}
+
+/* BASIC OPTIONS */
+
+.basicOptions {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.basicOptions h1 {
+  margin: 5px;
+  font-size: 16px;
+}
+
+.explosionTypeList {
+  display: flex;
+  margin-left: 30px;
+}
+
+.explosionTypeListLabel {
+  margin: 5px;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.explosionTypeSelect {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 10px;
+}
+
+.airburst {
+  display: flex;
+  flex-direction: row;
+}
+
+.airburst label {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.surface {
+  display: flex;
+  flex-direction: row;
+}
+
+.surface label {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.otherEffects {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.otherEffects h6 {
+  margin-left: 30px;
+  font-size: 14px;
+  font-style: italic;
+  font-family: sans-serif;
+  color: darkgray;
+}
+
+.otherEffectsList {
+  display: flex;
+  align-items: center;
+}
+
+.otherEffectsList input {
+  margin-left: 10px;
+}
+
+.otherEffectsList label {
+  font-size: 14px;
+  margin-left: 5px;
+}
