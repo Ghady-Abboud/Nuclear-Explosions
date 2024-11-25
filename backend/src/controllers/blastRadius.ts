@@ -13,31 +13,25 @@ class calculateRadius {
     this.data = data;
   }
 
-  private initializeRoutes() {
+  private initializeRoutes() {1
     this.router.get("/", this.RadiusCalculation);
   }
 
   public RadiusCalculation = (req: Request, res: Response): void => {
     try {
-      const R = {};
-      let allresults: Array<number> = [];
-      for (let i = 0; i < Object.keys(this.data).length; i++) {
-        const bomb = this.data[i];
-        const k = [180, 120, 70, 50];
-        for (var kvalue of k) {
-          for (var yieldvalue of bomb["yield"]) {
-            const equationResult = Math.round(
-              kvalue * Math.pow(yieldvalue, 1 / 3)
-            );
+      const { query } = req.query;
+      const k = 120;
 
-            allresults.push(equationResult);
+      if (query) {
+        for (let i = 0; i < Object.keys(this.data).length; i++) {
+          if (this.data[i].designation === query) {
+            const bombData = this.data[i];
+            const bombyield = bombData["yield"][0];
+            const R = k * Math.pow(bombyield, 1 / 3);
+            res.status(200).send(R.toFixed(4));
           }
         }
-
-        R[bomb["designation"]] = allresults;
-        allresults = [];
       }
-      res.status(200).json(R);
     } catch (err) {
       console.error(err);
     }
